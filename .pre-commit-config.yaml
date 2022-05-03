@@ -1,0 +1,5 @@
+repos:
+- repo: https://github.com/FernUni-UniDistance/pre-commit-hooks-funid
+  rev: 1.0.0
+  hooks:
+    - id: check-tests-decorator-tag
