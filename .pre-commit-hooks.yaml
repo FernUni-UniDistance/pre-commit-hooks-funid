@@ -4,3 +4,8 @@
     entry: check-decorator-value
     language: python
     types: [python]
+-   id: check-po-translation
+    name: check translation for duplicate
+    description: sort and check translation for duplicate
+    entry: check-po-translation
+    language: python
