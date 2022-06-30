@@ -7,11 +7,11 @@ from git import Git
 
 
 def check_up_to_date(mis_match):
-    
+
     directory = os.getcwd()
     repo = Repo(directory)
     for data in repo.remote().fetch("--dry-run"):
-        if data.flags != 4 and data.remote_ref_path == "13.0":
+        if data.flags != 4 and (data.remote_ref_path).strip() == "13.0":
             mis_match = True
             print(
                     f'[FD813].'
