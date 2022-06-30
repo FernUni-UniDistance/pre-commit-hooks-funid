@@ -4,3 +4,8 @@
     entry: check-decorator-value
     language: python
     types: [python]
+-   id: check-branch-up-to-date
+    name: check branch is up to date
+    description: check if branch is up to date or not
+    entry: check-branch-up-to-date
+    language: python

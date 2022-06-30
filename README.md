@@ -2,6 +2,7 @@ pre-commit-hooks-funid
 ==================
 
 
-| Code          |               Description               |                Short name |
-|---------------|:---------------------------------------:|--------------------------:|
-| CD813         | missing tag "funid_test" on test files  |  missing "funid_test" tag | 
+| Code   |                           Description                           |               Short name |
+|--------|:---------------------------------------------------------------:|-------------------------:|
+| CD813  |           missing tag "funid_test" on test files                | missing "funid_test" tag | 
+| FD813  | Branch or Fork is not up to date. Please update fork AND branch |    Branch not up to date | 
