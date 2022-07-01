@@ -7,6 +7,8 @@ from git import Git
 
 
 def check_up_to_date(mis_match):
+    """checks if the local repo and branch 
+    is up to date or not """
     directory = os.getcwd()
     repo = Repo(directory)
     for data in repo.remote().fetch("--dry-run"):
@@ -27,7 +29,8 @@ def check_up_to_date(mis_match):
                 f'Your local repository is not up'
                 f'to date with production repository'
             )
-    if repo.git.rev_list("..13.0"):
+    # Compare historical of commits with remotes/origin/13.0
+    if repo.git.rev_list("..remotes/origin/13.0"):
         mis_match = True
         print(
             f'[FD813].'
