@@ -14,3 +14,8 @@
     description: check if all migration condition are met
     entry: check-migration-tools
     language: python
+-   id: check-po-translation
+    name: check translation for duplicate
+    description: sort and check translation for duplicate
+    entry: check-po-translation
+    language: python
