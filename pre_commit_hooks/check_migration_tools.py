@@ -132,11 +132,20 @@ def check_traw(xml_file, condition_failed):
 
 
 def check_invisible_readonly(xml_file, condition_failed):
-    """check if view contain invisible or readonly without attrs"""
+    """check if view contain invisible or readonly without attrs
+    and value is not equal to '1', 'True' or
+    value does not containt 'context.get(...)'"""
     deprecated_directives = {
         'readonly',
         'invisible',
     }
+    possible_values = [
+        '1',
+        'True',
+    ]
+    possible_conditions = [
+        'context.get('
+    ]
     directive_attrs = '|'.join('@%s' % d for d in deprecated_directives)
     xpath = '|'.join(
         '/%s//*[%s]' % (tag, directive_attrs)
@@ -144,15 +153,19 @@ def check_invisible_readonly(xml_file, condition_failed):
     )
     doc = get_xml_records(xml_file)
     for node in doc.xpath(xpath):
-        directive = next(
-            iter(set(node.attrib) & deprecated_directives))
-        if directive:
-            condition_failed = True
-            print(
-                f'[WF816].'
-                f'{xml_file}: {node.sourceline} contain {directive},'
-                f' ‘invisible’ and ‘readonly’ should be used with ‘attrs’'
-            )
+        for attribute in deprecated_directives:
+            if (attribute in node.attrib
+                and not any(
+                    node.attrib[attribute] == val for val in possible_values)
+                and not any(
+                    cond in node.attrib[attribute]
+                    for cond in possible_conditions)):
+                condition_failed = True
+                print(
+                    f'[WF816].'
+                    f'{xml_file}: {node.sourceline} contain {attribute},'
+                    f' ‘invisible’ and ‘readonly’ should be used with ‘attrs’'
+                )
 
     return condition_failed
 
